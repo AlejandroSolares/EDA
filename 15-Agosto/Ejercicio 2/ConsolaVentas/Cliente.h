@@ -1,6 +1,9 @@
 #ifndef CLIENTE
 #define CLIENTE
-
+#include <string.h>
+#include "Fecha.h"
+#include <string.h>
+#include "Fecha.h"
 class Cliente{
 private:
     int idCliente;
@@ -16,7 +19,7 @@ public:
         this->fechaNac = f;
     }
     void setIdCliente(int idC){
-        this idCliente = idC;
+        this->idCliente = idC;
     }
     int getIdCliente(){
         return this->idCliente;
@@ -34,5 +37,4 @@ public:
         return this->fechaNac;
     }
 };
-
 #endif // CLIENTE

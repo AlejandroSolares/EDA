@@ -1,22 +1,12 @@
-/*#include <iostream>
-
-using namespace std;
-
-int main()
-{
-    cout << "Hello world!" << endl;
-
-
-    return 0;
-}
-*/
 #include <iostream>
-
 using namespace std;
-
-
-
-
+#include "Ventas.h"
+#include "Cliente.h"
+#include "Fecha.h"
+#include "Producto.h"
+#include <stdlib.h>
+#define LON 5
+#define TAM 5
 int menu(){
     int op;
     cout << endl << "----------------------------" << endl;
@@ -34,9 +24,188 @@ int menu(){
     cin >> op;
     return op;
 }
+/* **********************************************
+                    FECHA
+*************************************************/
+
+
+
+/* **********************************************
+                    CLIENTES
+*************************************************/
+
+Cliente addCliente(){
+    int id=0;
+    int vd,vm,va;
+    string nom;
+    Fecha fech;
+    Cliente cli;
+    cout << "Digite el id del cliente : ";
+    cin >> id;
+    cout << "Digite el nombre del cliente : ";
+    cin >> nom;
+    cout << "Digite la fecha de nacimiento : ";
+    cout << "Dia: ";
+    cin >> vd;
+    cout << "Mes: ";
+    cin >> vm;
+    cout << "Año: ";
+    cin >> va;
+
+    fech = Fecha(vd,vm,va);
+
+    cli = Cliente(id,nom, fech);
+    //cli.setFechaNac(fech);
+    return cli;
+}
+
+Cliente buscarCliente(Cliente lst[],int contC,int id){
+    bool encontrado = false;
+    int c=0;
+    Cliente r;
+    while(c<contC && !encontrado){
+        if (lst[c].getIdCliente() == id){
+            encontrado=true;
+            r = lst[c];
+        }
+        else{
+            c++;
+        }
+    }
+    return r;
+}
+
+void mostrarLstClientes(Cliente lst[], int cont){
+    if(cont == 0){
+        cout << "La lista esta vacia\n";
+    }
+    else{
+        cout << "No\tCliente\n";
+        for(int i=0; i<cont;i++){
+            cout << lst[i].getIdCliente() << "\t";
+            cout << lst[i].getNombreCliente() << "\n";
+            //cout << lst[i].getFechaNac() << "\n";
+        }
+    }
+}
+
+/* **********************************************
+                    PRODUCTO
+*************************************************/
+Producto addProducto(){
+    int id;
+    string nom;
+    float e;
+    Producto prod;
+    cout << "Digite el id : ";
+    cin >> id;
+    cout << "Digite el nombre del producto : ";
+    cin >> nom;
+    cout << "Digite la existencia: ";
+    cin >> e;
+    prod = Producto(id,nom);
+    prod.setExistencia(e);
+    return prod;
+}
+
+Producto buscarProducto(Producto lst[],int contP,int id){
+    bool encontrado = false;
+    int c=0;
+    Producto r;
+    while(c<contP && !encontrado){
+         if (lst[c].getIdProducto() == id){
+            encontrado=true;
+            r = lst[c];
+        }
+        else{
+            c++;
+        }
+    }
+    return r;
+}
+
+void mostrarLstProducto(Producto lst[], int cont){
+    if(cont == 0){
+        cout << "La lista esta vacia\n";
+    }
+    else{
+        cout << "id\tNombre\n";
+        for(int i=0; i<cont;i++){
+            cout << lst[i].getIdProducto() << "\t";
+            cout << lst[i].getNombreProducto() << "\n";
+        }
+    }
+}
+/* **********************************************
+                    VENTAS
+*************************************************/
+Ventas  addVenta(Producto lst[], Cliente lstc[], int contP){
+    int nf, idp, idCli;
+    int resp=1;
+    Cliente cli;
+    //string cli;
+    Ventas vta;
+    Producto prod;
+    cout << "Digite el numero de la factura : ";
+    cin >> nf;
+    cout << "Digite el id del cliente : ";
+    cin >> idCli;
+
+    cli = buscarCliente(lstc, contP, idCli);
+        if (cli.getIdCliente() !=0){
+            vta.setCliente(cli);
+        }
+        else{
+            cout << "El id no existe\n";
+        }
+    vta = Ventas(nf,cli);
+    do
+    {
+        cout << "digite el id del producto : ";
+        cin >> idp;
+        prod = buscarProducto(lst, contP, idp);
+        if (prod.getIdProducto() !=0){
+            vta.addLstProducto(prod);
+        }
+        else{
+            cout << "El id no existe\n";
+        }
+        cout << "Desea agregar otro producto Si=1 No=0: ";
+        cin >> resp;
+    }while(resp==1);
+
+
+    return vta;
+}
+
+void mostrarLstVentas(Ventas lst[], int cont){
+
+
+
+    if(cont == 0){
+        cout << "La lista esta vacia\n";
+    }
+    else{
+        cout << "No\tCliente\tTotal Productos\n";
+
+        for(int i=0; i<cont;i++){
+            cout << lst[i].getNumeroFactura() << "\t";
+            //cout << lst[i].getCliente() << "\t";
+
+            cout << lst[i].getContadorProducto() << "\n";
+        }
+    }
+}
+
+
+
 int main()
 {
     int opc;
+    Producto lstProducto[TAM];
+    Ventas lstVentas[TAM];
+    Cliente lstClientes [LON];
+    int contClt=0, contProd=0, contVta=0;
     do{
         system("cls");
         opc = menu();
@@ -44,21 +213,45 @@ int main()
         {
         case 1:
             ///Agregar productos
+            if (contProd< TAM){
+                lstProducto[contProd] = addProducto();
+                contProd++;
+            }
+            else {
+                cout << "Lista llena\n";
+            }
             break;
         case 2:
-            ///Agregar clientes
+            ///Agregar clientes addCliente
+            if (contClt< TAM){
+                lstClientes[contClt] = addCliente();
+                contClt++;
+            }
+            else {
+                cout << "Lista llena\n";
+            }
             break;
         case 3:
             ///Hacer ventas
+            if (contVta< TAM){
+                lstVentas[contVta] = addVenta(lstProducto, contProd);
+                contVta++;
+            }
+            else {
+                cout << "Lista llena\n";
+            }
             break;
         case 4:
             ///Ver lista de productos
+            mostrarLstProducto(lstProducto, contProd);
             break;
         case 5:
             ///Ver lista de clientes
+            mostrarLstClientes(lstClientes, contClt);
             break;
         case 6:
             ///Ver lista de ventas
+            mostrarLstVentas(lstVentas, contVta);
             break;
         case 7:
             ///Ver detalles de venta

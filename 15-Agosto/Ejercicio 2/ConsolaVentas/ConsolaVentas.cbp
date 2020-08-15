@@ -33,7 +33,9 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Cliente.h" />
-		<Unit filename="Menu.h" />
+		<Unit filename="Fecha.h" />
+		<Unit filename="Producto.h" />
+		<Unit filename="Ventas.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
