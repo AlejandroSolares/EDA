@@ -76,14 +76,17 @@ Cliente buscarCliente(Cliente lst[],int contC,int id){
 }
 
 void mostrarLstClientes(Cliente lst[], int cont){
+    Fecha fch;
     if(cont == 0){
         cout << "La lista esta vacia\n";
     }
     else{
-        cout << "No\tCliente\n";
+        cout << "No\tCliente\tFecha de Nacimiento\n";
         for(int i=0; i<cont;i++){
             cout << lst[i].getIdCliente() << "\t";
-            cout << lst[i].getNombreCliente() << "\n";
+            cout << lst[i].getNombreCliente() << "\t";
+            fch = fch.MostrarFecha();
+            cout << fch << "\n";
             //cout << lst[i].getFechaNac() << "\n";
         }
     }
@@ -180,7 +183,7 @@ Ventas  addVenta(Producto lst[], Cliente lstc[], int contP){
 
 void mostrarLstVentas(Ventas lst[], int cont){
 
-
+    Cliente cli;
 
     if(cont == 0){
         cout << "La lista esta vacia\n";
@@ -191,7 +194,8 @@ void mostrarLstVentas(Ventas lst[], int cont){
         for(int i=0; i<cont;i++){
             cout << lst[i].getNumeroFactura() << "\t";
             //cout << lst[i].getCliente() << "\t";
-
+            cli = lst[i].getCliente();
+            cout << cli.getNombreCliente() << "\t";
             cout << lst[i].getContadorProducto() << "\n";
         }
     }
@@ -234,7 +238,7 @@ int main()
         case 3:
             ///Hacer ventas
             if (contVta< TAM){
-                lstVentas[contVta] = addVenta(lstProducto, contProd);
+                lstVentas[contVta] = addVenta(lstProducto, lstClientes, contProd);
                 contVta++;
             }
             else {
@@ -255,6 +259,23 @@ int main()
             break;
         case 7:
             ///Ver detalles de venta
+            cout << "Digite el numero de factura : "
+            cin >> nf;
+            Ventas vta = buscarVentas(lstVentas,contVta,nf);
+            if(vta.getNumeroFactura()!=0){
+                cout << "Factura " << vta.getNumeroFactura()<< endl;
+                cli = vta.getCliente();
+                cout << "Cliente" << cli.getNombreCliente() << endl;
+                cout << "\nLista\n " ;
+                Producto *p = vta.getLstProducto();
+                cout << "\nNombre\n " ;
+                for(int i=0;i<vta.getContadorProducto();i++){
+                    cout
+                }
+            }
+            else{
+                cout << "La factura no existe\n";
+            }
             break;
         case 8:
             cout << "Gracias vuelva pronto\n";
