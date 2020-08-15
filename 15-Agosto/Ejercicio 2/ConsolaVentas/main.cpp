@@ -10,7 +10,7 @@ using namespace std;
 int menu(){
     int op;
     cout << endl << "----------------------------" << endl;
-    cout << endl << "      Main Menu   " << endl;
+    cout << endl << "      Menu Principal        " << endl;
     cout << endl << "----------------------------" << endl;
     cout << "Seleccione una opcion\n";
     cout << "1. Agregar productos\n";
@@ -24,10 +24,6 @@ int menu(){
     cin >> op;
     return op;
 }
-/* **********************************************
-                    FECHA
-*************************************************/
-
 
 
 /* **********************************************
