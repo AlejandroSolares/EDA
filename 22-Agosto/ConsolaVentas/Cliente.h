@@ -13,10 +13,10 @@ public:
     Cliente(){
         this->idCliente = 0;
     }
-    Cliente(int idC, string nC){
+    Cliente(int idC, string nC, Fecha f){
         this->idCliente = idC;
         this->nombreCliente = nC;
-
+        this->fechaNac = f;
     }
     void setIdCliente(int idC){
         this->idCliente = idC;

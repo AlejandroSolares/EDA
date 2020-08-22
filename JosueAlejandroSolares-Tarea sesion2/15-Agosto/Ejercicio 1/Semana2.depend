@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1597452818 source:c:\users\carlo\documents\eda\semana2\semana2\main.cpp
+	<iostream>
+	<stdlib.h>
+	"Estudiante.h"
+
+1597451555 c:\users\carlo\documents\eda\semana2\semana2\estudiante.h
+	<string.h>
+

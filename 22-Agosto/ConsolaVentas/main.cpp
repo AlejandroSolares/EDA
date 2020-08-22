@@ -9,7 +9,9 @@ using namespace std;
 #define TAM 5
 int menu(){
     int op;
-    cout << "Menu de opciones\n";
+    cout << endl << "----------------------------" << endl;
+    cout << endl << "      Menu Principal        " << endl;
+    cout << endl << "----------------------------" << endl;
     cout << "Seleccione una opcion\n";
     cout << "1. Agregar productos\n";
     cout << "2. Agregar clientes\n";
@@ -22,8 +24,13 @@ int menu(){
     cin >> op;
     return op;
 }
-Cliente addCliente()
-{
+
+
+/* **********************************************
+                    CLIENTES
+*************************************************/
+
+Cliente addCliente(){
     int id=0;
     int vd,vm,va;
     string nom;
@@ -43,13 +50,48 @@ Cliente addCliente()
 
     fech = Fecha(vd,vm,va);
 
-    cli = Cliente(id,nom);
-    cli.setFechaNac(fech);
+    cli = Cliente(id,nom, fech);
+    //cli.setFechaNac(fech);
     return cli;
 }
 
-Producto addProducto()
-{
+Cliente buscarCliente(Cliente lst[],int contC,int id){
+    bool encontrado = false;
+    int c=0;
+    Cliente r;
+    while(c<contC && !encontrado){
+        if (lst[c].getIdCliente() == id){
+            encontrado=true;
+            r = lst[c];
+        }
+        else{
+            c++;
+        }
+    }
+    return r;
+}
+
+void mostrarLstClientes(Cliente lst[], int cont){
+    Fecha fch;
+    if(cont == 0){
+        cout << "La lista esta vacia\n";
+    }
+    else{
+        cout << "No\tCliente\tFecha de Nacimiento\n";
+        for(int i=0; i<cont;i++){
+            cout << lst[i].getIdCliente() << "\t";
+            cout << lst[i].getNombreCliente() << "\t";
+            fch = lst[i].getFechaNac();
+            cout << fch.MostrarFecha() << "\n";
+            //cout << lst[i].getFechaNac() << "\n";
+        }
+    }
+}
+
+/* **********************************************
+                    PRODUCTO
+*************************************************/
+Producto addProducto(){
     int id;
     string nom;
     float e;
@@ -65,8 +107,38 @@ Producto addProducto()
     return prod;
 }
 
-Ventas  addVenta(Producto lst[], Cliente lstc[], int contP)
-{
+Producto buscarProducto(Producto lst[],int contP,int id){
+    bool encontrado = false;
+    int c=0;
+    Producto r;
+    while(c<contP && !encontrado){
+         if (lst[c].getIdProducto() == id){
+            encontrado=true;
+            r = lst[c];
+        }
+        else{
+            c++;
+        }
+    }
+    return r;
+}
+
+void mostrarLstProducto(Producto lst[], int cont){
+    if(cont == 0){
+        cout << "La lista esta vacia\n";
+    }
+    else{
+        cout << "id\tNombre\n";
+        for(int i=0; i<cont;i++){
+            cout << lst[i].getIdProducto() << "\t";
+            cout << lst[i].getNombreProducto() << "\n";
+        }
+    }
+}
+/* **********************************************
+                    VENTAS
+*************************************************/
+Ventas  addVenta(Producto lst[], Cliente lstc[], int contP){
     int nf, idp, idCli;
     int resp=1;
     Cliente cli;
@@ -105,88 +177,6 @@ Ventas  addVenta(Producto lst[], Cliente lstc[], int contP)
     return vta;
 }
 
-
-
-Cliente buscarCliente(Cliente lst[],int contC,int id)
-{
-    bool encontrado = false;
-    int c=0;
-    Cliente r;
-    while(c<contC && !encontrado){
-        if (lst[c].getIdCliente() == id){
-            encontrado=true;
-            r = lst[c];
-        }
-        else{
-            c++;
-        }
-    }
-    return r;
-}
-
-Producto buscarProducto(Producto lst[],int contP,int id){
-    bool encontrado = false;
-    int c=0;
-    Producto r;
-    while(c<contP && !encontrado){
-         if (lst[c].getIdProducto() == id){
-            encontrado=true;
-            r = lst[c];
-        }
-        else{
-            c++;
-        }
-    }
-    return r;
-}
-
-Ventas buscarVentas(Ventas lst[],int cont,int id)
-{
-    bool encontrado = false;
-    int c=0;
-    Ventas r;
-    while(c<cont && !encontrado){
-         if (lst[c].getNumeroFactura() == id){
-            encontrado=true;
-            r = lst[c];
-        }
-        else{
-            c++;
-        }
-    }
-    return r;
-}
-
-void mostrarLstClientes(Cliente lst[], int cont){
-    Fecha fch;
-    if(cont == 0){
-        cout << "La lista esta vacia\n";
-    }
-    else{
-        cout << "No\tCliente\tFecha de Nacimiento\n";
-        for(int i=0; i<cont;i++){
-            cout << lst[i].getIdCliente() << "\t";
-            cout << lst[i].getNombreCliente() << "\t";
-            fch = lst[i].getFechaNac();
-            cout << fch.MostrarFecha() << "\n";
-            //cout << lst[i].getFechaNac() << "\n";
-        }
-    }
-}
-
-void mostrarLstProducto(Producto lst[], int cont){
-    if(cont == 0){
-        cout << "La lista esta vacia\n";
-    }
-    else{
-        cout << "id\tNombre\n";
-        for(int i=0; i<cont;i++){
-            cout << lst[i].getIdProducto() << "\t";
-            cout << lst[i].getNombreProducto() << "\n";
-        }
-    }
-}
-
 void mostrarLstVentas(Ventas lst[], int cont){
 
     Cliente cli;
@@ -207,7 +197,21 @@ void mostrarLstVentas(Ventas lst[], int cont){
     }
 }
 
-
+Ventas buscarVentas(Ventas lst[],int cont,int id){
+    bool encontrado = false;
+    int c=0;
+    Ventas r;
+    while(c<cont && !encontrado){
+         if (lst[c].getNumeroFactura() == id){
+            encontrado=true;
+            r = lst[c];
+        }
+        else{
+            c++;
+        }
+    }
+    return r;
+}
 
 int main()
 {
