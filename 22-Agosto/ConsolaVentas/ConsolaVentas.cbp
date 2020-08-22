@@ -34,7 +34,11 @@
 		</Compiler>
 		<Unit filename="Cliente.h" />
 		<Unit filename="Fecha.h" />
+		<Unit filename="Persona.h" />
 		<Unit filename="Producto.h" />
+		<Unit filename="Trabajador.h" />
+		<Unit filename="TrabajadorPorHora.h" />
+		<Unit filename="TrabajadorTiempoCompleto.h" />
 		<Unit filename="Ventas.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>

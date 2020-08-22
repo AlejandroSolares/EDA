@@ -1,3 +1,4 @@
+#ifndef TRABAJADOR
 #define TRABAJADOR
 #include <string.h>
 #include "Persona.h"

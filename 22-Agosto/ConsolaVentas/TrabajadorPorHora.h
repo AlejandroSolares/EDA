@@ -1,7 +1,8 @@
 #ifndef TRABAJADORPORHORA
 #define TRABAJADORPORHORA
+#include "Trabajador.h"
 
-class TrabajadorPorHora : public Trabajador{
+class TrabajadorPorHora: public Trabajador{
 private:
     int numHT;
     float salarioPorHora;

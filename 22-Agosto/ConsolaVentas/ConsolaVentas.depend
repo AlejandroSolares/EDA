@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1598094693 source:c:\users\solares\documents\eda\tareas\eda\22-agosto\consolaventas\main.cpp
+	<iostream>
+	"Ventas.h"
+	"Cliente.h"
+	"Fecha.h"
+	"Producto.h"
+	"TrabajadorPorHora.h"
+	"TrabajadorTiempoCompleto.h"
+	<stdlib.h>
+
+1597486097 c:\users\solares\documents\eda\tareas\eda\22-agosto\consolaventas\ventas.h
+	<string.h>
+	"Producto.h"
+	"Cliente.h"
+
+1597484561 c:\users\solares\documents\eda\tareas\eda\22-agosto\consolaventas\producto.h
+	<string.h>
+
+1597485692 c:\users\solares\documents\eda\tareas\eda\22-agosto\consolaventas\cliente.h
+	<string.h>
+	"Fecha.h"
+	<string.h>
+	"Fecha.h"
+
+1598081389 c:\users\solares\documents\eda\tareas\eda\22-agosto\consolaventas\fecha.h
+
+1598091241 c:\users\solares\documents\eda\tareas\eda\22-agosto\consolaventas\trabajadorporhora.h
+	"Trabajador.h"
+
+1598091310 c:\users\solares\documents\eda\tareas\eda\22-agosto\consolaventas\trabajador.h
+	<string.h>
+	"Persona.h"
+
+1598094655 c:\users\solares\documents\eda\tareas\eda\22-agosto\consolaventas\persona.h
+	<string.h>
+	"Fecha.h"
+
+1598095029 c:\users\solares\documents\eda\tareas\eda\22-agosto\consolaventas\trabajadortiempocompleto.h
+	"Trabajador.h"
+

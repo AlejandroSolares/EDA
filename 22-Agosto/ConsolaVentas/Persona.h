@@ -31,10 +31,10 @@ public:
         return this->nombrePersona;
     }
     void setApellidoPersona(string aP){
-        this->nombrePersona = aP;
+        this->ApellidoPersona = aP;
     }
     string getApellidoPersona(){
-        return this->nombrePersona;
+        return this->ApellidoPersona;
     }
     /*void setFechaNac (Fecha f){
         this->fechaNac = f;
@@ -43,5 +43,5 @@ public:
         return this->fechaNac;
     }*/
 };
-#endif // PERSONAS
+
 #endif // PERSONAS

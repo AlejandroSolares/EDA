@@ -4,6 +4,9 @@ using namespace std;
 #include "Cliente.h"
 #include "Fecha.h"
 #include "Producto.h"
+#include "TrabajadorPorHora.h"
+#include "TrabajadorTiempoCompleto.h"
+
 #include <stdlib.h>
 #define LON 5
 #define TAM 5
@@ -13,14 +16,17 @@ int menu(){
     cout << endl << "      Menu Principal        " << endl;
     cout << endl << "----------------------------" << endl;
     cout << "Seleccione una opcion\n";
-    cout << "1. Agregar productos\n";
-    cout << "2. Agregar clientes\n";
-    cout << "3. Hacer ventas\n";
-    cout << "4. Ver lista de productos\n";
-    cout << "5. Ver lista de clientes\n";
-    cout << "6. Ver lista de ventas\n";
-    cout << "7. Ver detalles de venta\n";
-    cout << "8. Salir\n";
+    cout << "1.  Agregar productos\n";
+    cout << "2.  Agregar clientes\n";
+    cout << "3.  Hacer ventas\n";
+    cout << "4.  Ver lista de productos\n";
+    cout << "5.  Ver lista de clientes\n";
+    cout << "6.  Ver lista de ventas\n";
+    cout << "7.  Ver detalles de venta\n";
+    cout << "8.  Ingrese empleado\n";
+    cout << "9.  Lista empleados\n";
+    cout << "10. Detalle empleado\n";
+    cout << "11. Salir\n";
     cin >> op;
     return op;
 }
@@ -212,6 +218,94 @@ Ventas buscarVentas(Ventas lst[],int cont,int id){
     }
     return r;
 }
+/* **********************************************
+                TRABAJADORES
+*************************************************/
+Trabajador* addTrabajador(){
+    Trabajador* trab;
+    int idTrab = 0, tTrab = 0, nHtrab = 0;
+    float sHora = 0.0, SMens = 0.0;
+    string nom = "",ape = "";
+
+    cout << "Digite el Id: ";
+    cin >> idTrab;
+    cout << "Digite los nombres: ";
+    cin >> nom;
+    cout << "Digite los apellidos: ";
+    cin >> ape;
+    cout << "Tipo de trabajador(Recuerda que Pago por Horas = 1 y Tiempo Completo = 2)";
+    cin >> tTrab;
+    if (tTrab ==1){
+        cout << "Digite el numero de horas trabajadas: ";
+        cin >> nHtrab;
+        cout << "Digite el salario por hora: ";
+        cin >> sHora;
+        trab = new TrabajadorPorHora (idTrab,nom,ape,nHtrab,sHora);
+    }
+    else {
+        cout << "Digite el salario mensual: ";
+        cin >> SMens;
+        trab = new TrabajadorTiempoCompleto (idTrab,nom,ape,SMens);
+        }
+    return trab;
+}
+
+
+void mostrarLstTrabajador(Trabajador* lst[], int cont){
+
+    if(cont == 0){
+        cout << "La lista esta vacia\n";
+    }
+    else{
+        cout << "No\tNombre\tApellido\tPago\n";
+        for (int i=0;i<cont;i++){
+        cout << lst [i]->getIdPersona() << "\t";
+        cout << lst [i]->getNombrePersona() << "\t";
+        cout << lst [i]->getApellidoPersona() << "\t";
+        cout << "        " << lst [i]->getTotalPagar() << "\n";
+        }
+    }
+}
+
+Trabajador* buscarTrabajador(Trabajador* lst[], int cont, int id){
+    bool encontrado=false;
+    int c=0;
+    Trabajador* trab;
+
+
+    while (c < cont && !encontrado){
+        if (lst[c]->getIdPersona() == id){
+        encontrado = true;
+        trab = lst[c];
+        }
+        else {
+            c ++;
+        }
+    }
+    return trab;
+}
+
+int buscarTipoTrabajador (Trabajador *lst[], int cont, int id) {
+    int tpo = -1;
+    int c=0;
+    bool encontrado=false;
+    while (c < cont && !encontrado){
+        if (lst[c]->getIdPersona() == id){
+        encontrado = true;
+        tpo = c;
+    }
+    else {
+        c ++;
+    }
+}
+    return tpo;
+}
+
+
+/* **********************************************
+                    MAIN
+*************************************************/
+
 
 int main()
 {
@@ -219,7 +313,9 @@ int main()
     Producto lstProducto[TAM];
     Ventas lstVentas[TAM];
     Cliente lstClientes [LON];
-    int contClt=0, contProd=0, contVta=0;
+    Trabajador* lstTrabajadores[LON];
+
+    int contClt=0, contProd=0, contVta=0, contTrb=0;
     do{
         system("cls");
         opc = menu();
@@ -293,6 +389,63 @@ int main()
             }
             break;
         case 8:
+            ///Agregar trabajador
+            if (contTrb< LON){
+                lstTrabajadores[contTrb] = addTrabajador();
+                contTrb++;
+            }
+            else {
+                cout << "Lista llena\n";
+            }
+            break;
+
+        case 9:
+            ///Mostrar lista Trabajador
+            mostrarLstTrabajador(lstTrabajadores, contTrb);
+            break;
+
+        case 10:
+            ///Mostrar detalles del trabajador
+            {
+                int idT = 0;
+                cout << "Digite el id empleado : ";
+                cin >> idT;
+                Trabajador* trab = buscarTrabajador(lstTrabajadores,contTrb,idT);
+                if(trab->getIdPersona()!=0){
+                        ///Se encontro
+                cout << "Id: "<< trab->getIdPersona() << endl;
+                cout << "Empleado : " << trab->getNombrePersona() << " " << trab->getApellidoPersona() << endl;
+                //cout << "Apellidos: " << trab->getApellidoPersona << endl;
+                switch(trab->getTipoTrabajador()){
+                    case 1: cout << "Modalidad :    Pago por hora" << endl;
+                        TrabajadorPorHora* trabajadorporhora;
+                        trabajadorporhora = static_cast<TrabajadorPorHora*>(trab);
+                        cout << "Sueldo por hora: " << trabajadorporhora->getSalarioPorHora()<<endl;
+                        cout << "Horas trabajadas: " << trabajadorporhora->getNumHT() << endl;
+                        cout << "Descuento ISR: " << trabajadorporhora->getDescuentoIsr() << endl;
+                        cout << "Total Descuentos: " << trabajadorporhora->getTotalDescuentos() << endl;
+                        cout << "Total a Pagar: " << trabajadorporhora->getTotalPagar() << endl;
+
+                    break;
+                    case 2: cout << "Modalidad :    Pago mensual" << endl ;
+                        TrabajadorTiempoCompleto* TrabajadorFijo;
+                        TrabajadorFijo = static_cast<TrabajadorTiempoCompleto*>(trab);
+                        cout << "Descuento ISSS: " << TrabajadorFijo->getDescuentoIsss() << endl;
+                        cout << "Descuento AFP: " << TrabajadorFijo->getDescuentoAfp() << endl;
+                        cout << "Descuento ISR: " << TrabajadorFijo->getDescuentoIsr() << endl;
+                        cout << "Total de Descuentos: " << TrabajadorFijo->getTotalDescuentos()<<endl;
+                        cout << "Total a Pagar: " << TrabajadorFijo->getTotalPagar() << endl;
+
+                    break;
+                }
+                }
+                else{
+                    cout << "La factura no existe\n";
+                }
+            }
+            break;
+
+        case 11:
             cout << "Gracias vuelva pronto\n";
             break;
         default:
@@ -300,6 +453,6 @@ int main()
             break;
         }
         system("pause");
-    }while (opc !=8);
+    }while (opc !=11);
     return 0;
 }

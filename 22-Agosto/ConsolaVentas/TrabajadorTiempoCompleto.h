@@ -1,5 +1,6 @@
 #ifndef TRABAJADORTIEMPOCOMPLETO
 #define TRABAJADORTIEMPOCOMPLETO
+#include "Trabajador.h"
 class TrabajadorTiempoCompleto : public Trabajador{
 private:
     float descuentoIsss;
@@ -18,7 +19,7 @@ public:
         {
            if(this->sueldo >= 0.01 && this->sueldo <= 472)
             {
-                this->descuentoIsr = this->sueldo;
+                this->descuentoIsr = 0;
             }
            else if(sueldo >= 472.01 && sueldo <= 895.24)
             {
