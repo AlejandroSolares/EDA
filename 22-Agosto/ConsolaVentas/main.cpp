@@ -6,6 +6,8 @@ using namespace std;
 #include "Producto.h"
 #include "TrabajadorPorHora.h"
 #include "TrabajadorTiempoCompleto.h"
+#include "Lista.h"
+#include "ClienteList.h"
 
 #include <stdlib.h>
 #define LON 5
@@ -23,10 +25,13 @@ int menu(){
     cout << "5.  Ver lista de clientes\n";
     cout << "6.  Ver lista de ventas\n";
     cout << "7.  Ver detalles de venta\n";
-    cout << "8.  Ingrese empleado\n";
-    cout << "9.  Lista empleados\n";
-    cout << "10. Detalle empleado\n";
-    cout << "11. Salir\n";
+    cout << "8.  Ingrese trabajador\n";
+    cout << "9.  Lista trabajadores\n";
+    cout << "10. Detalle trabajador\n";
+    cout << "11. Buscar trabajador\n";
+    cout << "12. Modificar trabajador\n";
+    cout << "13. Eliminar trabajador\n";
+    cout << "14. Salir\n";
     cin >> op;
     return op;
 }
@@ -51,7 +56,7 @@ Cliente addCliente(){
     cin >> vd;
     cout << "Mes: ";
     cin >> vm;
-    cout << "Año: ";
+    cout << "Aï¿½o: ";
     cin >> va;
 
     fech = Fecha(vd,vm,va);
@@ -285,7 +290,7 @@ Trabajador* buscarTrabajador(Trabajador* lst[], int cont, int id){
     return trab;
 }
 
-int buscarTipoTrabajador (Trabajador *lst[], int cont, int id) {
+int buscarTipoTrabajador     (Trabajador *lst[], int cont, int id) {
     int tpo = -1;
     int c=0;
     bool encontrado=false;
@@ -444,11 +449,22 @@ int main()
                 }
             }
             break;
-
-        case 11:
-            cout << "Gracias vuelva pronto\n";
+            case 11:
+            ///Buscar Trabajador
+            bscrTrabajador(lstTrabajadores, contTrb);
             break;
-        default:
+            case 12:
+            ///Modificar Trabajador
+            mostrarLstTrabajador(lstTrabajadores, contTrb);
+            break;
+            case 13:
+            ///Eliminar Trabajador
+            mostrarLstTrabajador(lstTrabajadores, contTrb);
+            break;
+            case 14:
+                cout << "Gracias vuelva pronto\n";
+                break;
+            default:
             cout << "Error, opcion no valida\n";
             break;
         }

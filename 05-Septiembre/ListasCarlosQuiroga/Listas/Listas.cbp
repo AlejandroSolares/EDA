@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="ConsolaVentas" />
+		<Option title="Listas" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/ConsolaVentas" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/Listas" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -16,7 +16,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/ConsolaVentas" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/Listas" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -32,17 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Cliente.h" />
-		<Unit filename="Fecha.h" />
 		<Unit filename="Lista.h" />
 		<Unit filename="Nodo.h" />
-		<Unit filename="Persona.h" />
-		<Unit filename="Producto.h" />
-		<Unit filename="Trabajador.h" />
-		<Unit filename="TrabajadorList.h" />
-		<Unit filename="TrabajadorPorHora.h" />
-		<Unit filename="TrabajadorTiempoCompleto.h" />
-		<Unit filename="Ventas.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

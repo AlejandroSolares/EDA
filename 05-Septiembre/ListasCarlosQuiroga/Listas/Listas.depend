@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1598675146 source:c:\users\carlo\documents\eda\nueva carpeta\listas\main.cpp
+	<iostream>
+	"Lista.h"
+
+1598675337 c:\users\carlo\documents\eda\nueva carpeta\listas\lista.h
+	"Nodo.h"
+
+1598674261 c:\users\carlo\documents\eda\nueva carpeta\listas\nodo.h
+

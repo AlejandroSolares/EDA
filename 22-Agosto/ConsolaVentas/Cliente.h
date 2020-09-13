@@ -1,7 +1,6 @@
 #ifndef CLIENTE
 #define CLIENTE
-#include <string.h>
-#include "Fecha.h"
+
 #include <string.h>
 #include "Fecha.h"
 class Cliente{

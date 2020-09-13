@@ -2,6 +2,11 @@
 #define PERSONA
 #include <string.h>
 #include "Fecha.h"
+#include<iostream>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<conio.h>
 
 class Persona{
 private:
